@@ -1,0 +1,45 @@
+--Create Tables
+
+	CREATE TABLE AIRPORT(AIRPORT_ID INT, NAME STRING, CITY STRING, COUNTRY STRING, IATA_CODE STRING, ICAO_CODE STRING, LATITUDE DOUBLE, LONGITUDE DOUBLE, ALTITUDE DOUBLE, TIMEZONE DOUBLE, DST DOUBLE, DB_TIME DOUBLE)
+	ROW FORMAT DELIMITED
+	FIELDS TERMINATED BY ',';
+	
+	CREATE TABLE AIRLINES(AIRLINE_ID INT, NAME STRING, ALIAS STRING, IATA_CODE STRING, ICAO_CODE STRING, CALLSIGN STRING, COUNTRY STRING, ACTIVE STRING)
+	ROW FORMAT DELIMITED
+	FIELDS TERMINATED BY ',';
+	
+	CREATE TABLE ROUTES (AIRLINE_CODE STRING, AIRLINE_ID INT, FROM_AIRPORT STRING, FROM_AIRPORT_ID INT, DEST_AIRPORT STRING, DEST_AIRPORT_ID INT,CODESHARE STRING, STOPS INT, CARRIER_TYPE STRING)
+	ROW FORMAT DELIMITED
+	FIELDS TERMINATED BY ',';
+
+--Load Data
+	
+	LOAD DATA LOCAL INPATH 'aiport.dat' OVERWRITE INTO TABLE airport;
+	LOAD DATA LOCAL INPATH 'Final_airlines' OVERWRITE INTO TABLE airlines;
+	LOAD DATA LOCAL INPATH 'routes.dat' OVERWRITE INTO TABLE routes;
+
+-----------------------------------------------------------------------------------------------
+
+--A.Find list of Airports operating in the Country India
+	
+	SELECT * FROM AIRPORT WHERE COUNTRY='India' ;
+
+--B.Find the list of Airlines having zero stops
+	
+	SELECT * FROM ROUTES WHERE STOP = 0;
+
+--C.List of Airlines operating with code share
+
+	SELECT * FROM ROUTES WHERE CODESHARE='Y';
+
+--D.Which country (or) territory having highest Airports
+
+	SELECT  count(*) count_airports, country from airport
+	group by country
+	SORT by count_airports desc
+	LIMIT 1;
+
+
+--E.Find the list of Active Airlines in United state
+
+	SELECT * FROM AIRLINES WHERE COUNTRY = 'United States' AND ACTIVE='Y';
