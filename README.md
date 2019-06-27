@@ -6,11 +6,11 @@ Below were the some of the sample problems that I resolved during that organizat
 
 Problem:
 
-A.Find list of Airports operating in the Country India \n
-B.Find the list of Airlines having zero stops
-C.List of Airlines operating with code share
-D.Which country (or) territory having highest Airports
-E.Find the list of Active Airlines in United state
+A.Find list of Airports operating in the Country India.
+B.Find the list of Airlines having zero stops.
+C.List of Airlines operating with code share.
+D.Which country (or) territory having highest Airports.
+E.Find the list of Active Airlines in United state.
 
 Datasets: Airports(airports_mod.dat), Airline(Final_airlines) and Routes Datasets(routes.dat).
 
